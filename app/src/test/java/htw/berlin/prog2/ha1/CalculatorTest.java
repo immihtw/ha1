@@ -87,8 +87,49 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-
-
     //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("Subtraction should work")
+    void subtractionTwoNumbers() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+        String expected = "53";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("if u press a binary operation a second time a intermediate result should be shown")
+    void addingNumbersTwiceInARow() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(9);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("+");
+        System.out.println(calc.readScreen());
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+        String expected = "10";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("Negative numbers should work correctly")
+    void addingNumbersToNegativeValues() {
+        Calculator calc = new Calculator();
+        calc.pressNegativeKey();
+        calc.pressDigitKey(7);
+        calc.pressDigitKey(5);
+        System.out.println(calc.readScreen());
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+        String expected = "-70";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
 }
 
